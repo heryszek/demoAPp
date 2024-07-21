@@ -5,10 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-@Getter
-@Setter
-@NoArgsConstructor
-@ToString
+
 @Entity
 public class Task {
 
@@ -21,6 +18,66 @@ public class Task {
     private String reportedBy;
     private String risk;
 
+    public Task() {
+    }
+
+    public Task(LocalDate date, String description, String reportedBy, String risk) {
+        this.date = date;
+        this.description = description;
+        this.reportedBy = reportedBy;
+        this.risk = risk;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getReportedBy() {
+        return reportedBy;
+    }
+
+    public String getRisk() {
+        return risk;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setReportedBy(String reportedBy) {
+        this.reportedBy = reportedBy;
+    }
+
+    public void setRisk(String risk) {
+        this.risk = risk;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+               "id=" + id +
+               ", date=" + date +
+               ", description='" + description + '\'' +
+               ", reportedBy='" + reportedBy + '\'' +
+               ", risk='" + risk + '\'' +
+               '}';
+    }
     // Getters and Setters
 }
 

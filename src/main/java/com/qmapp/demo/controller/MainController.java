@@ -1,6 +1,5 @@
 package com.qmapp.demo.controller;
 
-
 import com.qmapp.demo.model.AdverseEvent;
 import com.qmapp.demo.model.Task;
 import com.qmapp.demo.service.AdverseEventService;
@@ -14,18 +13,27 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 public class MainController {
+
+    private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
     private TaskService taskService;
 
     @Autowired
     private AdverseEventService adverseEventService;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @FXML
     private VBox contentPane;
@@ -35,14 +43,19 @@ public class MainController {
 
     private boolean showingTasks = true;
 
+    @FXML
+    public void initialize() {
+        showTasks();
+    }
+
     public void showTasks() {
         showingTasks = true;
-        tableView.getItems().setAll(taskService.getAllTasks());
+        refreshTable();
     }
 
     public void showAdverseEvents() {
         showingTasks = false;
-        tableView.getItems().setAll(adverseEventService.getAllAdverseEvents());
+        refreshTable();
     }
 
     public void addNew() {
@@ -54,17 +67,15 @@ public class MainController {
                 loader.setLocation(getClass().getResource("/fxml/adverse_event_form.fxml"));
             }
 
+            loader.setControllerFactory(applicationContext::getBean);
+
             Parent parent = loader.load();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(parent));
             stage.showAndWait();
 
-            if (showingTasks) {
-                showTasks();
-            } else {
-                showAdverseEvents();
-            }
+            refreshTable();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,5 +94,16 @@ public class MainController {
     public void handleExit() {
         System.exit(0);
     }
-}
 
+    private void refreshTable() {
+        if (showingTasks) {
+            logger.info("Refreshing tasks table");
+            tableView.getItems().setAll(taskService.getAllTasks());
+            logger.info("Number of tasks loaded: " + taskService.getAllTasks().size());
+        } else {
+            logger.info("Refreshing adverse events table");
+            tableView.getItems().setAll(adverseEventService.getAllAdverseEvents());
+            logger.info("Number of adverse events loaded: " + adverseEventService.getAllAdverseEvents().size());
+        }
+    }
+}
