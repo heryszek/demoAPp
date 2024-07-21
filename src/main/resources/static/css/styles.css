@@ -1,0 +1,73 @@
+/* General styling for the application */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 10;
+}
+
+/* Styling for buttons */
+.button {
+    -fx-background-color: #007acc;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: #005f9e;
+}
+
+.button:pressed {
+    -fx-background-color: #004f80;
+}
+
+/* Styling for TableView */
+.table-view {
+    -fx-border-color: #d3d3d3;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #007acc;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 30px;
+    -fx-border-color: transparent transparent #d3d3d3 transparent;
+    -fx-background-color: #007acc;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-padding: 8px;
+}
+
+/* Styling for TextField and TextArea */
+.text-field, .text-area {
+    -fx-border-color: #d3d3d3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #007acc;
+}
+
+/* Styling for DatePicker */
+.date-picker {
+    -fx-border-color: #d3d3d3;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.date-picker:focused {
+    -fx-border-color: #007acc;
+}
