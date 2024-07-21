@@ -1,11 +1,14 @@
-<?import javafx.scene.layout.BorderPane?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.qmapp.demo.controller.MainController">
     <top>
         <MenuBar>
@@ -23,10 +26,17 @@
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
             </padding>
-            <TableView fx:id="tableView"/>
+            <TableView fx:id="tableView">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID"/>
+                    <TableColumn fx:id="dateColumn" text="Date"/>
+                    <TableColumn fx:id="descriptionColumn" text="Description"/>
+                    <TableColumn fx:id="reportedByColumn" text="Reported By"/>
+                    <TableColumn fx:id="riskColumn" text="Risk"/>
+                </columns>
+            </TableView>
             <Button text="Add New" onAction="#addNew"/>
             <Button text="Delete" onAction="#deleteSelected"/>
         </VBox>
     </center>
 </BorderPane>
-

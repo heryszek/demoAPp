@@ -9,11 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class AdverseEventService {
 
+
+    private final AdverseEventRepository adverseEventRepository;
+
     @Autowired
-    private AdverseEventRepository adverseEventRepository;
+    public AdverseEventService(AdverseEventRepository adverseEventRepository) {
+        this.adverseEventRepository = adverseEventRepository;
+    }
+
 
     public List<AdverseEvent> getAllAdverseEvents() {
         return adverseEventRepository.findAll();
